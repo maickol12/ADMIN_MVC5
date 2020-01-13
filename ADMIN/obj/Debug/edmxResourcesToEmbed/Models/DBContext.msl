@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="quinielaModelStoreContainer" CdmEntityContainer="quinielaEntities">
+    <EntitySetMapping Name="tblRol">
+      <EntityTypeMapping TypeName="quinielaModel.tblRol">
+        <MappingFragment StoreEntitySet="tblRol">
+          <ScalarProperty Name="bActive" ColumnName="bActive" />
+          <ScalarProperty Name="vUpdateUser" ColumnName="vUpdateUser" />
+          <ScalarProperty Name="vCreateUser" ColumnName="vCreateUser" />
+          <ScalarProperty Name="dUpdateDate" ColumnName="dUpdateDate" />
+          <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+          <ScalarProperty Name="vNameEs" ColumnName="vNameEs" />
+          <ScalarProperty Name="vNameEn" ColumnName="vNameEn" />
+          <ScalarProperty Name="idRol" ColumnName="idRol" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

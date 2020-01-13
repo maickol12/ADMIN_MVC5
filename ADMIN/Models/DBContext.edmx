@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="quinielaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblRol">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="vNameEn" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="vNameEs" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="dCreateDate" Type="datetime" />
+          <Property Name="dUpdateDate" Type="datetime" />
+          <Property Name="vCreateUser" Type="varchar" MaxLength="100" />
+          <Property Name="vUpdateUser" Type="varchar" MaxLength="100" />
+          <Property Name="bActive" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="quinielaModelStoreContainer">
+          <EntitySet Name="tblRol" EntityType="Self.tblRol" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="quinielaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="quinielaEntities" annotation:LazyLoadingEnabled="true" >
+          <EntitySet Name="tblRol" EntityType="quinielaModel.tblRol" />
+        </EntityContainer>
+        <EntityType Name="tblRol">
+          <Key>
+            <PropertyRef Name="idRol" />
+          </Key>
+          <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="vNameEn" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="vNameEs" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dCreateDate" Type="DateTime" Precision="3" />
+          <Property Name="dUpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="vCreateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="vUpdateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="bActive" Type="Boolean" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="quinielaModelStoreContainer" CdmEntityContainer="quinielaEntities" >
+          <EntitySetMapping Name="tblRol">
+            <EntityTypeMapping TypeName="quinielaModel.tblRol">
+              <MappingFragment StoreEntitySet="tblRol">
+                <ScalarProperty Name="bActive" ColumnName="bActive" />
+                <ScalarProperty Name="vUpdateUser" ColumnName="vUpdateUser" />
+                <ScalarProperty Name="vCreateUser" ColumnName="vCreateUser" />
+                <ScalarProperty Name="dUpdateDate" ColumnName="dUpdateDate" />
+                <ScalarProperty Name="dCreateDate" ColumnName="dCreateDate" />
+                <ScalarProperty Name="vNameEs" ColumnName="vNameEs" />
+                <ScalarProperty Name="vNameEn" ColumnName="vNameEn" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

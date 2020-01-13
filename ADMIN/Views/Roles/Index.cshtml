@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ADMIN.Models.tblRol>
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.vNameEn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.vNameEs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.dCreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bActive)
+        </th>
+        <th>
+            Edit
+        </th>
+    </tr>
+    @foreach(var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.vNameEs)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.vNameEn)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.dCreateDate)
+    </td>
+    <td>
+        
+        @Html.CheckBox("Check",item.bActive,new { @disabled = "disabled" })
+    </td>
+    <td>
+        @Html.ActionLink("Edit","Edit",new { id = item.idRol })
+    </td>
+</tr>
+    }
+</table>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="quinielaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="quinielaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblRol" EntityType="quinielaModel.tblRol" />
+  </EntityContainer>
+  <EntityType Name="tblRol">
+    <Key>
+      <PropertyRef Name="idRol" />
+    </Key>
+    <Property Name="idRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="vNameEn" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="vNameEs" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dCreateDate" Type="DateTime" Precision="3" />
+    <Property Name="dUpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="vCreateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="vUpdateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="bActive" Type="Boolean" />
+  </EntityType>
+</Schema>
