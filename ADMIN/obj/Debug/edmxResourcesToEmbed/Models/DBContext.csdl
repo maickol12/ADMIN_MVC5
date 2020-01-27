@@ -2,6 +2,7 @@
 <Schema Namespace="quinielaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
   <EntityContainer Name="quinielaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="tblRol" EntityType="quinielaModel.tblRol" />
+    <EntitySet Name="tblUser" EntityType="quinielaModel.tblUser" />
   </EntityContainer>
   <EntityType Name="tblRol">
     <Key>
@@ -15,5 +16,20 @@
     <Property Name="vCreateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="vUpdateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="bActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
   </EntityType>
 </Schema>

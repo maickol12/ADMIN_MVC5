@@ -26,5 +26,6 @@ namespace ADMIN.Models
         }
     
         public virtual DbSet<tblRol> tblRol { get; set; }
+        public virtual DbSet<tblUser> tblUser { get; set; }
     }
 }

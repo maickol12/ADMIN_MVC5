@@ -10,24 +10,17 @@
 namespace ADMIN.Models
 {
     using System;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    using System.Collections.Generic;
+    
     public partial class tblRol
     {
         public int idRol { get; set; }
-        [DisplayName("Nombre (ES)")]
-        [StringLength(50,ErrorMessage = "Se aceptan un maximo de 50 caracteres")]
         public string vNameEn { get; set; }
-        [DisplayName("Nombre (EN)")]
-        [StringLength(50,ErrorMessage = "Se aceptan un maximo de 50 caracteres")]
         public string vNameEs { get; set; }
-        [DisplayName("Fecha de creación")]
         public Nullable<System.DateTime> dCreateDate { get; set; }
         public Nullable<System.DateTime> dUpdateDate { get; set; }
         public string vCreateUser { get; set; }
         public string vUpdateUser { get; set; }
-        [DisplayName("Activo")]
-        public bool bActive { get; set; }
+        public Nullable<bool> bActive { get; set; }
     }
 }

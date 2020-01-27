@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="edf00a3944d04e5fab5ff12a12097a41" Name="Diagram1" >
         <EntityTypeShape EntityType="quinielaModel.tblRol" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="quinielaModel.tblUser" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

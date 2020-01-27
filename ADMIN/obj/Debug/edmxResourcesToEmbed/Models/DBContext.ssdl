@@ -13,7 +13,23 @@
     <Property Name="vUpdateUser" Type="varchar" MaxLength="100" />
     <Property Name="bActive" Type="bit" />
   </EntityType>
+  <EntityType Name="tblUser">
+    <Key>
+      <PropertyRef Name="idUser" />
+    </Key>
+    <Property Name="idUser" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="varchar" MaxLength="50" />
+    <Property Name="Name" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="250" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="varchar" MaxLength="100" />
+    <Property Name="UpdateUser" Type="varchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
   <EntityContainer Name="quinielaModelStoreContainer">
     <EntitySet Name="tblRol" EntityType="Self.tblRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>
