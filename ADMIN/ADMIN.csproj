@@ -138,6 +138,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="helper\SessionTimeoutAttribute.cs" />
     <Compile Include="Models\DBContext.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -153,7 +154,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBContext.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\tblMenu.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tblRol.cs">
+      <DependentUpon>DBContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tblSubMenu.cs">
       <DependentUpon>DBContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tblUser.cs">

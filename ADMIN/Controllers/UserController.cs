@@ -1,8 +1,5 @@
 ﻿using ADMIN.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ADMIN.Controllers
@@ -24,12 +21,32 @@ namespace ADMIN.Controllers
                 ).FirstOrDefault();
             if (result == null)
             {
-                ModelState.AddModelError("Password", "Usuario/Contaseña incorrecta"); 
+                ModelState.AddModelError("Password", "Usuario/Contaseña incorrecta");
                 return View();
             }
             else
             {
-                return RedirectToAction("Index", "Dashboard");
+                var res = dbContext.tblMenu.Select(
+                        a => new
+                        {
+                            a.NameEn,
+                            a.NameEs,
+                            a.Ruta,
+                            a.tblSubMenu
+                        }
+                    ).ToList();
+
+                //var html = "";
+                //foreach(var row in res)
+                //{
+                //    html += "<h1>" + row.NameEn + "</h1>";
+                //}
+
+                Session["menu"]     = res;
+                Session["isLogin"]  = true;
+                Session["User"]     = result;
+                //return RedirectToAction("Index", "Dashboard");
+                return View();
             }
             
             

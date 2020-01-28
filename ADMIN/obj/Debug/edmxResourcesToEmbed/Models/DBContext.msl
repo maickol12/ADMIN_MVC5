@@ -31,5 +31,36 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="tblSubMenu">
+      <EntityTypeMapping TypeName="quinielaModel.tblSubMenu">
+        <MappingFragment StoreEntitySet="tblSubMenu">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="idMenu" ColumnName="idMenu" />
+          <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+          <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+          <ScalarProperty Name="NameEs" ColumnName="NameEs" />
+          <ScalarProperty Name="idSubMenu" ColumnName="idSubMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMenu">
+      <EntityTypeMapping TypeName="quinielaModel.tblMenu">
+        <MappingFragment StoreEntitySet="tblMenu">
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+          <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+          <ScalarProperty Name="NameEs" ColumnName="NameEs" />
+          <ScalarProperty Name="idMenu" ColumnName="idMenu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

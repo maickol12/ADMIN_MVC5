@@ -5,6 +5,20 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="quinielaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblMenu">
+          <Key>
+            <PropertyRef Name="idMenu" />
+          </Key>
+          <Property Name="idMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameEs" Type="varchar" MaxLength="50" />
+          <Property Name="NameEn" Type="varchar" MaxLength="50" />
+          <Property Name="Ruta" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" />
+          <Property Name="UpdateUser" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
         <EntityType Name="tblRol">
           <Key>
             <PropertyRef Name="idRol" />
@@ -17,6 +31,21 @@
           <Property Name="vCreateUser" Type="varchar" MaxLength="100" />
           <Property Name="vUpdateUser" Type="varchar" MaxLength="100" />
           <Property Name="bActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblSubMenu">
+          <Key>
+            <PropertyRef Name="idSubMenu" />
+          </Key>
+          <Property Name="idSubMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NameEs" Type="varchar" MaxLength="50" />
+          <Property Name="NameEn" Type="varchar" MaxLength="50" />
+          <Property Name="Ruta" Type="varchar" MaxLength="50" />
+          <Property Name="idMenu" Type="int" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="UpdateDate" Type="datetime" />
+          <Property Name="CreateUser" Type="varchar" MaxLength="50" />
+          <Property Name="UpdateUser" Type="varchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -33,9 +62,27 @@
           <Property Name="UpdateUser" Type="varchar" MaxLength="100" />
           <Property Name="Active" Type="bit" />
         </EntityType>
+        <Association Name="FK__tblSubMen__idMen__4D94879B">
+          <End Role="tblMenu" Type="Self.tblMenu" Multiplicity="0..1" />
+          <End Role="tblSubMenu" Type="Self.tblSubMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenu">
+              <PropertyRef Name="idMenu" />
+            </Principal>
+            <Dependent Role="tblSubMenu">
+              <PropertyRef Name="idMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="quinielaModelStoreContainer">
+          <EntitySet Name="tblMenu" EntityType="Self.tblMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblRol" EntityType="Self.tblRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblSubMenu" EntityType="Self.tblSubMenu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblSubMen__idMen__4D94879B" Association="Self.FK__tblSubMen__idMen__4D94879B">
+            <End Role="tblMenu" EntitySet="tblMenu" />
+            <End Role="tblSubMenu" EntitySet="tblSubMenu" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -44,6 +91,12 @@
         <EntityContainer Name="quinielaEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="tblRol" EntityType="quinielaModel.tblRol" />
           <EntitySet Name="tblUser" EntityType="quinielaModel.tblUser" />
+          <EntitySet Name="tblSubMenu" EntityType="quinielaModel.tblSubMenu" />
+          <EntitySet Name="tblMenu" EntityType="quinielaModel.tblMenu" />
+          <AssociationSet Name="FK__tblSubMen__idMen__4D94879B" Association="quinielaModel.FK__tblSubMen__idMen__4D94879B">
+            <End Role="tblMenu" EntitySet="tblMenu" />
+            <End Role="tblSubMenu" EntitySet="tblSubMenu" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblRol">
           <Key>
@@ -73,6 +126,49 @@
           <Property Name="UpdateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" />
         </EntityType>
+        <EntityType Name="tblSubMenu">
+          <Key>
+            <PropertyRef Name="idSubMenu" />
+          </Key>
+          <Property Name="idSubMenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameEn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ruta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idMenu" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="tblMenu" Relationship="quinielaModel.FK__tblSubMen__idMen__4D94879B" FromRole="tblSubMenu" ToRole="tblMenu" />
+        </EntityType>
+        <EntityType Name="tblMenu">
+          <Key>
+            <PropertyRef Name="idMenu" />
+          </Key>
+          <Property Name="idMenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NameEs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="NameEn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ruta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+          <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UpdateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Active" Type="Boolean" />
+          <NavigationProperty Name="tblSubMenu" Relationship="quinielaModel.FK__tblSubMen__idMen__4D94879B" FromRole="tblMenu" ToRole="tblSubMenu" />
+        </EntityType>
+        <Association Name="FK__tblSubMen__idMen__4D94879B">
+          <End Type="quinielaModel.tblMenu" Role="tblMenu" Multiplicity="0..1" />
+          <End Type="quinielaModel.tblSubMenu" Role="tblSubMenu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblMenu">
+              <PropertyRef Name="idMenu" />
+            </Principal>
+            <Dependent Role="tblSubMenu">
+              <PropertyRef Name="idMenu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -106,6 +202,37 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="idUser" ColumnName="idUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSubMenu">
+            <EntityTypeMapping TypeName="quinielaModel.tblSubMenu">
+              <MappingFragment StoreEntitySet="tblSubMenu">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="idMenu" ColumnName="idMenu" />
+                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameEs" ColumnName="NameEs" />
+                <ScalarProperty Name="idSubMenu" ColumnName="idSubMenu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMenu">
+            <EntityTypeMapping TypeName="quinielaModel.tblMenu">
+              <MappingFragment StoreEntitySet="tblMenu">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+                <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Ruta" ColumnName="Ruta" />
+                <ScalarProperty Name="NameEn" ColumnName="NameEn" />
+                <ScalarProperty Name="NameEs" ColumnName="NameEs" />
+                <ScalarProperty Name="idMenu" ColumnName="idMenu" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

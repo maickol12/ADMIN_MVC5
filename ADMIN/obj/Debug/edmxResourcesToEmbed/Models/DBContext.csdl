@@ -3,6 +3,12 @@
   <EntityContainer Name="quinielaEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="tblRol" EntityType="quinielaModel.tblRol" />
     <EntitySet Name="tblUser" EntityType="quinielaModel.tblUser" />
+    <EntitySet Name="tblSubMenu" EntityType="quinielaModel.tblSubMenu" />
+    <EntitySet Name="tblMenu" EntityType="quinielaModel.tblMenu" />
+    <AssociationSet Name="FK__tblSubMen__idMen__4D94879B" Association="quinielaModel.FK__tblSubMen__idMen__4D94879B">
+      <End Role="tblMenu" EntitySet="tblMenu" />
+      <End Role="tblSubMenu" EntitySet="tblSubMenu" />
+    </AssociationSet>
   </EntityContainer>
   <EntityType Name="tblRol">
     <Key>
@@ -32,4 +38,47 @@
     <Property Name="UpdateUser" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="Active" Type="Boolean" />
   </EntityType>
+  <EntityType Name="tblSubMenu">
+    <Key>
+      <PropertyRef Name="idSubMenu" />
+    </Key>
+    <Property Name="idSubMenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameEs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NameEn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ruta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idMenu" Type="Int32" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="tblMenu" Relationship="quinielaModel.FK__tblSubMen__idMen__4D94879B" FromRole="tblSubMenu" ToRole="tblMenu" />
+  </EntityType>
+  <EntityType Name="tblMenu">
+    <Key>
+      <PropertyRef Name="idMenu" />
+    </Key>
+    <Property Name="idMenu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameEs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NameEn" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Ruta" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UpdateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <NavigationProperty Name="tblSubMenu" Relationship="quinielaModel.FK__tblSubMen__idMen__4D94879B" FromRole="tblMenu" ToRole="tblSubMenu" />
+  </EntityType>
+  <Association Name="FK__tblSubMen__idMen__4D94879B">
+    <End Type="quinielaModel.tblMenu" Role="tblMenu" Multiplicity="0..1" />
+    <End Type="quinielaModel.tblSubMenu" Role="tblSubMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMenu">
+        <PropertyRef Name="idMenu" />
+      </Principal>
+      <Dependent Role="tblSubMenu">
+        <PropertyRef Name="idMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema>

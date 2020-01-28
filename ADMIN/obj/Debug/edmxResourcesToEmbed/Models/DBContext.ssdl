@@ -1,5 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="quinielaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblMenu">
+    <Key>
+      <PropertyRef Name="idMenu" />
+    </Key>
+    <Property Name="idMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameEs" Type="varchar" MaxLength="50" />
+    <Property Name="NameEn" Type="varchar" MaxLength="50" />
+    <Property Name="Ruta" Type="varchar" MaxLength="50" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="varchar" MaxLength="50" />
+    <Property Name="UpdateUser" Type="varchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
   <EntityType Name="tblRol">
     <Key>
       <PropertyRef Name="idRol" />
@@ -12,6 +26,21 @@
     <Property Name="vCreateUser" Type="varchar" MaxLength="100" />
     <Property Name="vUpdateUser" Type="varchar" MaxLength="100" />
     <Property Name="bActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblSubMenu">
+    <Key>
+      <PropertyRef Name="idSubMenu" />
+    </Key>
+    <Property Name="idSubMenu" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameEs" Type="varchar" MaxLength="50" />
+    <Property Name="NameEn" Type="varchar" MaxLength="50" />
+    <Property Name="Ruta" Type="varchar" MaxLength="50" />
+    <Property Name="idMenu" Type="int" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CreateUser" Type="varchar" MaxLength="50" />
+    <Property Name="UpdateUser" Type="varchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
   </EntityType>
   <EntityType Name="tblUser">
     <Key>
@@ -28,8 +57,26 @@
     <Property Name="UpdateUser" Type="varchar" MaxLength="100" />
     <Property Name="Active" Type="bit" />
   </EntityType>
+  <Association Name="FK__tblSubMen__idMen__4D94879B">
+    <End Role="tblMenu" Type="Self.tblMenu" Multiplicity="0..1" />
+    <End Role="tblSubMenu" Type="Self.tblSubMenu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblMenu">
+        <PropertyRef Name="idMenu" />
+      </Principal>
+      <Dependent Role="tblSubMenu">
+        <PropertyRef Name="idMenu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="quinielaModelStoreContainer">
+    <EntitySet Name="tblMenu" EntityType="Self.tblMenu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblRol" EntityType="Self.tblRol" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSubMenu" EntityType="Self.tblSubMenu" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__tblSubMen__idMen__4D94879B" Association="Self.FK__tblSubMen__idMen__4D94879B">
+      <End Role="tblMenu" EntitySet="tblMenu" />
+      <End Role="tblSubMenu" EntitySet="tblSubMenu" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

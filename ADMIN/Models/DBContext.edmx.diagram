@@ -4,9 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="edf00a3944d04e5fab5ff12a12097a41" Name="Diagram1" >
+      <Diagram DiagramId="edf00a3944d04e5fab5ff12a12097a41" Name="Diagram1" ZoomLevel="102" >
         <EntityTypeShape EntityType="quinielaModel.tblRol" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="quinielaModel.tblUser" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="quinielaModel.tblSubMenu" Width="1.5" PointX="4.125" PointY="5" />
+        <EntityTypeShape EntityType="quinielaModel.tblMenu" Width="1.5" PointX="0.875" PointY="5" />
+        <AssociationConnector Association="quinielaModel.FK__tblSubMen__idMen__4D94879B" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

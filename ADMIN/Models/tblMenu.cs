@@ -12,17 +12,25 @@ namespace ADMIN.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblUser
+    public partial class tblMenu
     {
-        public int idUser { get; set; }
-        public string UserName { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string Password { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tblMenu()
+        {
+            this.tblSubMenu = new HashSet<tblSubMenu>();
+        }
+    
+        public int idMenu { get; set; }
+        public string NameEs { get; set; }
+        public string NameEn { get; set; }
+        public string Ruta { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string CreateUser { get; set; }
         public string UpdateUser { get; set; }
         public Nullable<bool> Active { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tblSubMenu> tblSubMenu { get; set; }
     }
 }

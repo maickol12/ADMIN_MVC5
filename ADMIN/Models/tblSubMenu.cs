@@ -12,17 +12,19 @@ namespace ADMIN.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tblUser
+    public partial class tblSubMenu
     {
-        public int idUser { get; set; }
-        public string UserName { get; set; }
-        public string Name { get; set; }
-        public string LastName { get; set; }
-        public string Password { get; set; }
+        public int idSubMenu { get; set; }
+        public string NameEs { get; set; }
+        public string NameEn { get; set; }
+        public string Ruta { get; set; }
+        public Nullable<int> idMenu { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string CreateUser { get; set; }
         public string UpdateUser { get; set; }
         public Nullable<bool> Active { get; set; }
+    
+        public virtual tblMenu tblMenu { get; set; }
     }
 }
