@@ -29,6 +29,7 @@ namespace ADMIN.Models
         public string CreateUser { get; set; }
         public string UpdateUser { get; set; }
         public Nullable<bool> Active { get; set; }
+        public string Controller { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tblSubMenu> tblSubMenu { get; set; }

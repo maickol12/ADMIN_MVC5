@@ -18,6 +18,7 @@
           <Property Name="CreateUser" Type="varchar" MaxLength="50" />
           <Property Name="UpdateUser" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
+          <Property Name="Controller" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblRol">
           <Key>
@@ -46,6 +47,7 @@
           <Property Name="CreateUser" Type="varchar" MaxLength="50" />
           <Property Name="UpdateUser" Type="varchar" MaxLength="50" />
           <Property Name="Active" Type="bit" />
+          <Property Name="Action" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="tblUser">
           <Key>
@@ -141,6 +143,7 @@
           <Property Name="UpdateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="tblMenu" Relationship="quinielaModel.FK__tblSubMen__idMen__4D94879B" FromRole="tblSubMenu" ToRole="tblMenu" />
+          <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblMenu">
           <Key>
@@ -156,6 +159,7 @@
           <Property Name="UpdateUser" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Active" Type="Boolean" />
           <NavigationProperty Name="tblSubMenu" Relationship="quinielaModel.FK__tblSubMen__idMen__4D94879B" FromRole="tblMenu" ToRole="tblSubMenu" />
+          <Property Name="Controller" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__tblSubMen__idMen__4D94879B">
           <End Type="quinielaModel.tblMenu" Role="tblMenu" Multiplicity="0..1" />
@@ -208,6 +212,7 @@
           <EntitySetMapping Name="tblSubMenu">
             <EntityTypeMapping TypeName="quinielaModel.tblSubMenu">
               <MappingFragment StoreEntitySet="tblSubMenu">
+                <ScalarProperty Name="Action" ColumnName="Action" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
                 <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
@@ -224,6 +229,7 @@
           <EntitySetMapping Name="tblMenu">
             <EntityTypeMapping TypeName="quinielaModel.tblMenu">
               <MappingFragment StoreEntitySet="tblMenu">
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
                 <ScalarProperty Name="Active" ColumnName="Active" />
                 <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
                 <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />

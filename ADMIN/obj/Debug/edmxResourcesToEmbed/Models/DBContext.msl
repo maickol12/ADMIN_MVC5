@@ -34,6 +34,7 @@
     <EntitySetMapping Name="tblSubMenu">
       <EntityTypeMapping TypeName="quinielaModel.tblSubMenu">
         <MappingFragment StoreEntitySet="tblSubMenu">
+          <ScalarProperty Name="Action" ColumnName="Action" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
           <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />
@@ -50,6 +51,7 @@
     <EntitySetMapping Name="tblMenu">
       <EntityTypeMapping TypeName="quinielaModel.tblMenu">
         <MappingFragment StoreEntitySet="tblMenu">
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
           <ScalarProperty Name="Active" ColumnName="Active" />
           <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
           <ScalarProperty Name="CreateUser" ColumnName="CreateUser" />

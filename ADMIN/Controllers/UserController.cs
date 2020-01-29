@@ -26,30 +26,13 @@ namespace ADMIN.Controllers
             }
             else
             {
-                var res = dbContext.tblMenu.Select(
-                        a => new
-                        {
-                            a.NameEn,
-                            a.NameEs,
-                            a.Ruta,
-                            a.tblSubMenu
-                        }
-                    ).ToList();
-
-                //var html = "";
-                //foreach(var row in res)
-                //{
-                //    html += "<h1>" + row.NameEn + "</h1>";
-                //}
-
-                Session["menu"]     = res;
                 Session["isLogin"]  = true;
                 Session["User"]     = result;
-                //return RedirectToAction("Index", "Dashboard");
-                return View();
+                var res = dbContext.tblMenu.ToList();
+                Session["menu"] = res;
+                return RedirectToAction("Index", "Dashboard");
             }
-            
-            
         }
+  
     }
 }

@@ -13,6 +13,7 @@
     <Property Name="CreateUser" Type="varchar" MaxLength="50" />
     <Property Name="UpdateUser" Type="varchar" MaxLength="50" />
     <Property Name="Active" Type="bit" />
+    <Property Name="Controller" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tblRol">
     <Key>
@@ -41,6 +42,7 @@
     <Property Name="CreateUser" Type="varchar" MaxLength="50" />
     <Property Name="UpdateUser" Type="varchar" MaxLength="50" />
     <Property Name="Active" Type="bit" />
+    <Property Name="Action" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="tblUser">
     <Key>
