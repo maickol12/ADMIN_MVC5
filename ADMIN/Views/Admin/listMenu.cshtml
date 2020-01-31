@@ -1,0 +1,75 @@
+﻿@model IEnumerable<ADMIN.Models.tblMenu>
+@{
+    ViewBag.Title = "listMenu";
+}
+
+
+<div class="row">
+    <div class="col">
+
+    </div>
+    <div class="col">
+        <div class="row h-100 justify-content-center align-items-center">
+            <h2>Menu</h2>
+        </div>
+    </div>
+    <div class="col">
+        <div class="row h-100 justify-content-end align-items-end">
+            <button class="btn btn-primary"  data-toggle="modal" data-target="#modalNewModule">Agregar</button>
+        </div>
+    </div>
+</div>
+<hr />
+
+<table class="table table-hover datatable">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre(ES)</th>
+            <th>Nombre(EN)</th>
+            <th>Usuario Creación</th>
+            <th>Controlador</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var row in Model)
+        {
+            <tr>
+                <td>@row.idMenu</td>
+                <td>@row.NameEs</td>
+                <td>@row.NameEn</td>
+                <td>@row.CreateUser</td>
+                <td>@row.Controller</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<!-- Modal -->
+<div class="modal fade" id="modalNewModule" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            @using (Html.BeginForm("saveMenu","Admin"))
+            {
+                @Html.AntiForgeryToken()
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>@Html.LabelFor(model => model.SingleOrDefault().NameEs)</label>
+                        @Html.EditorFor(model => model.SingleOrDefault().NameEs, new { htmlAttributes = new { @class = "form-control col-12" } })
+                        @Html.ValidationMessageFor(model => model.SingleOrDefault().NameEs, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <input type="submit" class="btn btn-primary" value="Save changes" />
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -334,6 +334,9 @@
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Admin\listUser.cshtml" />
     <Content Include="Views\Admin\listRoles.cshtml" />
+    <Content Include="Views\Admin\listMenu.cshtml" />
+    <Content Include="Views\Admin\listSubMenu.cshtml" />
+    <Content Include="Views\Admin\newModule.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
