@@ -11,7 +11,8 @@ namespace ADMIN.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class tblMenu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,14 +22,20 @@ namespace ADMIN.Models
         }
     
         public int idMenu { get; set; }
+        [Required]
+        [StringLength(maximumLength: 50, MinimumLength = 3,ErrorMessage ="Campo requerido")]
         public string NameEs { get; set; }
+        [Required]
+        [StringLength(maximumLength: 50, MinimumLength = 3, ErrorMessage = "Campo requerido")]
         public string NameEn { get; set; }
         public string Ruta { get; set; }
         public Nullable<System.DateTime> CreateDate { get; set; }
         public Nullable<System.DateTime> UpdateDate { get; set; }
         public string CreateUser { get; set; }
         public string UpdateUser { get; set; }
-        public Nullable<bool> Active { get; set; }
+        public bool Active { get; set; }
+        [Required]
+        [StringLength(maximumLength: 50, MinimumLength = 3, ErrorMessage = "Campo requerido")]
         public string Controller { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

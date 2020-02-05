@@ -28,6 +28,7 @@ namespace ADMIN.Controllers
             {
                 Session["isLogin"]  = true;
                 Session["User"]     = result;
+                Session["UserName"] = result.UserName;
                 var res = dbContext.tblMenu.ToList();
                 Session["menu"] = res;
                 return RedirectToAction("Index", "Dashboard");

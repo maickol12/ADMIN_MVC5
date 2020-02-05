@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ADMIN.Models.tblMenu>
+﻿@model ADMIN.Models.tblMenu
 @{
     ViewBag.Title = "listMenu";
 }
@@ -21,26 +21,34 @@
 </div>
 <hr />
 
-<table class="table table-hover datatable">
-    <thead>
+<table class="table datatable" id="datatableMenu">
+    <thead class="thead-dark">
         <tr>
             <th>ID</th>
             <th>Nombre(ES)</th>
             <th>Nombre(EN)</th>
             <th>Usuario Creación</th>
             <th>Controlador</th>
+            <th>Activo</th>
+            <th>Editar</th>
+            <th>Desactivar</th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var row in Model)
+
+        @foreach (var row in ViewData["listMenu"] as IList<ADMIN.Models.tblMenu>)
         {
-            <tr>
-                <td>@row.idMenu</td>
-                <td>@row.NameEs</td>
-                <td>@row.NameEn</td>
-                <td>@row.CreateUser</td>
-                <td>@row.Controller</td>
-            </tr>
+        <tr id="@row.idMenu">
+            <th scope="row">@row.idMenu</th>
+            <td>@row.NameEs</td>
+            <td>@row.NameEn</td>
+            <td>@row.CreateUser</td>
+            <td>@row.Controller</td>
+            <td>@row.Active</td>
+            <td><button data-idmenu="@row.idMenu" onclick="getMenu(this)" class="btb btn-success">Editar</button></td>
+            <td><button data-idmenu="@row.idMenu" onclick="desactivateMenu(this)" class="btb btn-danger">Desactivar</button></td>
+            
+        </tr>
         }
     </tbody>
 </table>
@@ -54,17 +62,32 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            @using (Html.BeginForm("saveMenu","Admin"))
+            @using (Html.BeginForm("saveMenu", "Admin"))
             {
                 @Html.AntiForgeryToken()
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label>@Html.LabelFor(model => model.SingleOrDefault().NameEs)</label>
-                        @Html.EditorFor(model => model.SingleOrDefault().NameEs, new { htmlAttributes = new { @class = "form-control col-12" } })
-                        @Html.ValidationMessageFor(model => model.SingleOrDefault().NameEs, "", new { @class = "text-danger" })
-                    </div>
+        <div class="modal-body">
+            <div class="form-group">
+                @Html.HiddenFor(model => model.idMenu, new { Value = 0})
+                <label>@Html.LabelFor(model => model.NameEs)</label>
+                @Html.EditorFor(model => model.NameEs, new { htmlAttributes = new { @class = "form-control col-12" } })
+                @Html.ValidationMessageFor(model => model.NameEs, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label>@Html.LabelFor(model => model.NameEn)</label>
+                @Html.EditorFor(model => model.NameEn, new { htmlAttributes = new { @class = "form-control col-12" } })
+                @Html.ValidationMessageFor(model => model.NameEn, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                <label>@Html.LabelFor(model => model.Active)</label>
+                @Html.CheckBoxFor(model => model.Active,new {@checked = true,htmlAttributes = new { @class = "form-control col-12" } })
+            </div>
+            <div>
+                <label>@Html.LabelFor(model => model.Controller)</label>
+                @Html.EditorFor(model => model.Controller, new { htmlAttributes = new { @class = "form-control col-12"} })
+                @Html.ValidationMessageFor(model => model.Controller, "", new { @class = "text-danger"})
+            </div>
 
-                </div>
+        </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                     <input type="submit" class="btn btn-primary" value="Save changes" />
@@ -73,3 +96,60 @@
         </div>
     </div>
 </div>
+
+
+<script>
+    function getMenu(e) {
+        var idMenu = $(e).attr("data-idmenu");
+        $.ajax({
+            url: "/Admin/getMenu/" + idMenu,
+            dataType: "json",
+            cache:false,
+            beforeSend: function (e) {
+
+            },
+            success: function (e) {
+                $("#idMenu").val(e.idMenu);
+                $("#NameEs").val(e.NameEs);
+                $("#NameEn").val(e.NameEn);
+                $("#Controller").val(e.Controller);
+                $("#Active").prop("checked", e.Active);
+                $("#modalNewModule").modal("show");
+            },
+            error: function (e) {
+                console.log(e);
+            }
+        });
+
+    }
+    function desactivateMenu(e) {
+        alertify.confirm(
+            'Hola',
+            '¿Estas seguro que deseas desactivar el modulo?',
+            function () {
+                var idMenu = $(e).attr("data-idmenu");
+                $.ajax({
+                    url: "/Admin/desactivateMenu/" + idMenu,
+                    cache: false,
+                    dataType:"json",
+                    beforeSend: function (e) {
+
+                    },
+                    success: function (e) {
+                        var index = $("#" + idMenu).index();
+                        var datatable = $('#datatableMenu').DataTable();
+                        datatable.cell(index,5 )
+                            .data(e.Active)
+                            .draw();
+                        alertify.success("Editado con éxito");
+                    },
+                    error: function (e) {
+                        console.log(e);
+                    }
+                });
+            },
+            function () {
+                
+            });
+    }
+</script>

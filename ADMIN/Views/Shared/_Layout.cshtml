@@ -9,10 +9,37 @@
     @Scripts.Render("~/bundles/modernizr")
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
+    <!-- Default theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/default.min.css" />
+    <!-- Semantic UI theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/semantic.min.css" />
+    <!-- Bootstrap theme -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.min.css" />
+
+    <!-- JavaScript -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+
     @Html.Partial("Menu")
+    @{
+        var controller = ViewContext.RouteData.Values["controller"].ToString();
+        var action     = ViewContext.RouteData.Values["action"].ToString();
+        if (controller.ToLower().Equals("user") && action.ToLower().Equals("index"))
+        {
+            <style>
+                body {
+                    background: url('../img/background.jpg');
+                    background-repeat: no-repeat;
+                    background-attachment: fixed;
+                    background-size: cover;
+                }
+            </style>
+        }
+    }
 </head>
 <body>
-    <div class="container body-content">
+    <div class="body-content">
         @RenderBody()
     </div>
 
@@ -23,10 +50,11 @@
 
     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  
     <script>
-        $(document).ready( function () {
+        $(document).ready(function () {
             $('.datatable').DataTable({});
-        } );
+        });
     </script>
 </body>
 </html>
